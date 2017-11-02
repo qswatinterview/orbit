@@ -1,0 +1,26 @@
+﻿<!-- Since we want to re-use this in the Home dashboard page, keep it as a partial view. -->
+
+@model IssueListViewModel
+
+<table class="table table-striped">
+    <thead>
+        <td>Severity</td>
+        <td>Title</td>
+        <td>Assignee</td>
+        <td>Due Date</td>
+        <td>Status</td>
+    </thead>
+    <tbody>
+        @foreach (var issue in Model.Issues)
+        {
+            <tr title="@issue.Description">
+                <!-- Show a glyphicon with the severity: A ^, -, v, or /!\. -->
+                <td><span class="glyphicon @issue.Severity.GetGlyphiconClassAndTextColorForSeverity()"></td>
+                <td><a asp-controller="Issue" asp-action="Details" asp-route-id="@issue.Id">#@issue.Id @issue.Title</a></td>
+                <td>@issue.Assignee.UserName</td>
+                <td>@issue.DueDate</td>
+                <td>@issue.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
