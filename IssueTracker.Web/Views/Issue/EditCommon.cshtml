@@ -1,0 +1,47 @@
+﻿@model IssueEditPageViewModel
+
+<form asp-action="@ViewData["Action"]" method="post">
+    <div class="form-group">
+        <label asp-for="Issue.Title">Title</label>
+        <input asp-for="Issue.Title" class="form-control" type="text">
+    </div>
+    <div class="form-group">
+        <label asp-for="Issue.Description">Description</label>
+        <textarea asp-for="Issue.Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="Issue.Assignee">Assignee</label>
+        <select asp-for="Issue.Assignee" class="form-control">
+            @foreach (var user in Model.UserNames)
+            {
+                <option value="@user">@user</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Issue.Severity">Severity</label>
+        <select asp-for="Issue.Severity" class="form-control">
+            @foreach (var severity in Enum.GetNames(typeof(IssueSeverity)))
+            {
+                <option value="@severity">@severity</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Issue.Status">Status</label>
+        <select asp-for="Issue.Status" class="form-control">
+            @foreach (var status in Enum.GetNames(typeof(IssueStatus)))
+            {
+                <option value="@status">@status</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Issue.DueDate">Due Date</label>
+        <input asp-for="Issue.DueDate" type="date" class="form-control" />
+    </div>
+
+    <input type="hidden" asp-for="Issue.Id">
+
+    <button type="submit" class="button btn-primary">Submit</button>
+</form>

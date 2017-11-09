@@ -1,0 +1,27 @@
+﻿@model IssueTracker.Web.Models.Issue
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Details</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">#@Model.Id @Model.Title</h4>
+    </div>
+
+    <div class="panel-body">
+        <p>@Model.Description</p>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">Status: @Model.Status</li>
+        <li class="list-group-item">Severity: <span class="glyphicon @Model.Severity.GetGlyphiconClassAndTextColorForSeverity()"> @Model.Severity</span>
+        <li class="list-group-item">Assignee: @Model.Assignee.UserName</li>
+        <li class="list-group-item">Due Date: @Model.DueDate</li>
+    </ul>
+</div>
+<hr />
+<div>
+    <a asp-controller="Issue" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>

@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@model IssueListViewModel
+
+<h2>Dashboard</h2>
+
+<div class="panel">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h4 class="panel-heading">My Incomplete Issues</h4>
+
+            <div class="panel-body">
+                @Html.Partial("IssueListPartial", Model)
+            </div>
+        }
+        else {
+            <h4 class="panel-heading">You must be logged in to view your issues.</h4>
+            <p class="panel-body">
+                <a asp-area="" asp-controller="Account" asp-action="Login">Click here to log in.</a>
+            </p>
+        }
+    </div>
+</div>
